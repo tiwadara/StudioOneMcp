@@ -154,6 +154,20 @@
   .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
   .contact-grid .card a { font-size: 0.95rem; }
 
+  .quote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 24px 0 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text);
+    max-width: 68ch;
+  }
+  .pillar h3 { color: var(--accent); }
+  .pillar p { color: var(--text-dim); margin: 0; font-size: 0.92rem; }
+  .aka { color: var(--text-dim); font-size: 0.9rem; margin-top: 20px; }
+  .aka strong { color: var(--text); }
+
   footer {
     padding: 32px 24px 64px;
     text-align: center;
@@ -174,6 +188,9 @@
 <nav class="tabs">
   <div class="wrap">
     <a href="#bio">Bio</a>
+    <a href="#identity">Identity</a>
+    <a href="#stands-for">What He Stands For</a>
+    <a href="#advocacy">Advocacy</a>
     <a href="#discography">Discography</a>
     <a href="#credits">Production &amp; Engineering</a>
     <a href="#listen">Listen</a>
@@ -185,21 +202,141 @@
   <div class="wrap">
     <h2>Biography</h2>
     <p>
-      <strong>TiwaDara</strong> is a Nigerian singer, songwriter, producer, and sound engineer known
-      for a soulful, groove-driven sound. Beyond performing and releasing original music, TiwaDara
-      works behind the board — writing, producing, mixing, and mastering for other artists — and
-      has engineering and production credits on projects for <strong>Dunnie</strong>,
-      <strong>Deena Ade</strong>, <strong>Davina Oriakhi</strong>, <strong>Mo'believe</strong>, and
-      <strong>Ilaye</strong>.
+      <strong>TiwaDara</strong> is a conduit for emotion, and a bridge between worlds — blending
+      music, culture, and raw humanity. Through music, he channels feelings that are both
+      universal and deeply personal, creating a space where listeners connect with themselves
+      and their heritage.
+    </p>
+    <p class="quote">
+      "TiwaDara channels raw emotion through his music, blending heritage and modern sound to
+      create something timeless and authentic."
     </p>
     <p>
-      TiwaDara's original releases and collaborations are available across major streaming
-      platforms including SoundCloud, Spotify, Apple Music, and Shazam.
+      He is also a producer and sound engineer, with engineering and production credits on
+      projects for <strong>Dunnie</strong>, <strong>Deena Ade</strong>,
+      <strong>Davina Oriakhi</strong>, <strong>Mo'believe</strong>, and <strong>Ilaye</strong>.
+      His debut project was titled <strong>Renegade</strong>.
     </p>
-    <div class="note">
-      This bio is compiled from publicly available release and credit information. TiwaDara's
-      full personal bio (background, story, and additional details) can be dropped in here to
-      replace or extend this section.
+  </div>
+</section>
+
+<section id="identity">
+  <div class="wrap">
+    <h2>Identity</h2>
+    <div class="grid">
+      <div class="card pillar">
+        <h3>A Rebel Visionary</h3>
+        <p>Unafraid to question norms, flip perspectives, and innovate.</p>
+      </div>
+      <div class="card pillar">
+        <h3>A Connector</h3>
+        <p>Brings people together through shared emotions, culture, and a love for music.</p>
+      </div>
+      <div class="card pillar">
+        <h3>A Seeker of Depth</h3>
+        <p>Always digging deeper into stories, relationships, and ideas — turning the mundane into the profound.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:40px">Who He Sings For</h2>
+    <p class="quote">
+      "For those who feel deeply, honor their roots, and seek music that echoes their innermost
+      truths."
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Those Who Feel Deeply</h3>
+        <p class="meta">People who experience life through their emotions and seek music that speaks to their inner world.</p>
+      </div>
+      <div class="card">
+        <h3>Those Who Honor Their Roots</h3>
+        <p class="meta">Listeners who embrace their culture while navigating modern identities.</p>
+      </div>
+      <div class="card">
+        <h3>Those Who Yearn for Connection &amp; Vulnerability</h3>
+        <p class="meta">People who are okay being vulnerable — seeking solace, validation, and joy in music that mirrors their truths.</p>
+      </div>
+      <div class="card">
+        <h3>Those Who Yearn for Growth</h3>
+        <p class="meta">It's okay to be me, it's okay to make mistakes, it's okay to grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stands-for">
+  <div class="wrap">
+    <h2>What He Stands For</h2>
+    <p class="quote">
+      "Emotional honesty, cultural pride, and the power of simplicity in creating universal
+      connection."
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Emotional Honesty</h3>
+        <p class="meta">Creating music that embraces vulnerability, allowing listeners to face and accept their feelings.</p>
+      </div>
+      <div class="card">
+        <h3>Cultural Pride</h3>
+        <p class="meta">Celebrating roots — honoring the sounds, symbols, and stories of heritage while exploring new creative horizons.</p>
+      </div>
+      <div class="card">
+        <h3>Authenticity in Simplicity</h3>
+        <p class="meta">Stripping away excess to focus on what matters: the feel, the soul, and the connection.</p>
+      </div>
+      <div class="card">
+        <h3>Freedom of Expression</h3>
+        <p class="meta">Freeing yourself and others from the confines of tradition, societal expectations, and fear.</p>
+      </div>
+      <div class="card">
+        <h3>The Power of Connection</h3>
+        <p class="meta">Creating bridges between people, cultures, and emotions — reminding listeners they're not alone.</p>
+      </div>
+      <div class="card">
+        <h3>Rebellion With Purpose</h3>
+        <p class="meta">Not here to conform — here to challenge, inspire, and spark change. (First project: <em>Renegade</em>.)</p>
+      </div>
+    </div>
+    <p class="quote" style="margin-top:24px">
+      "Freedom, connection, depth, and purposeful rebellion. TiwaDara's music inspires
+      self-discovery and challenges the world to see differently."
+    </p>
+    <p class="aka">
+      Musical reference points: <strong>Ayinla</strong>, <strong>Kolington</strong>,
+      <strong>The Weeknd</strong>, <strong>Lagbaja</strong>. Also performs under the collective
+      names <strong>TiwaDara and the Villagers</strong> and <strong>TiwaDara and the Town Criers</strong>.
+    </p>
+  </div>
+</section>
+
+<section id="advocacy">
+  <div class="wrap">
+    <h2>Stance on Causes &amp; Activism</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Cultural Preservation &amp; Celebration</h3>
+        <p class="meta">
+          Protecting and elevating African culture — not just as a source of inspiration, but as a
+          living, breathing legacy. Supporting the protection of indigenous languages, traditional
+          arts, and cultural education while staying rooted in heritage.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Mental &amp; Emotional Wellness</h3>
+        <p class="meta">
+          Advocating for mental health awareness, especially in African and global communities
+          where it is often stigmatized — promoting the healing power of music and safe spaces for
+          emotional vulnerability and expression.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Youth Empowerment &amp; Creative Freedom</h3>
+        <p class="meta">
+          Giving the next generation the tools and confidence to express themselves authentically —
+          supporting access to music education, creative spaces, and mentorship for young African
+          artists, and breaking societal molds that stifle individuality or creativity.
+        </p>
+      </div>
     </div>
   </div>
 </section>
