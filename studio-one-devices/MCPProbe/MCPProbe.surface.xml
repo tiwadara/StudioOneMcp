@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The doorbell: after writing request.json the client presses note 119.
+     Each press toggles the component's probeTick param, which wakes the script.
+     Two forms map the same param, so a failure tells us which one Studio One
+     accepts: channel 16 in our proven attribute form (the default, clear of the
+     MCU surface and the pads), and channel 1 in the form NeanderthalMan's bridge
+     uses (python -m studio_one_mcp.probe channel-1 option). -->
+<ControlSurface>
+	<Controls>
+		<Control name="tick16" type="trigger" options="receive">
+			<MidiMessage status="#90" channel="#0F" address="#77"/>
+		</Control>
+		<Control name="tick1" type="trigger" options="receive">
+			<MidiMessage status="#90" address="#77"/>
+		</Control>
+	</Controls>
+	<Mappings>
+		<!-- Component-param mappings only take effect inside <Global>. -->
+		<Global>
+			<Toggle control="tick16" param="probeTick"/>
+			<Toggle control="tick1" param="probeTick"/>
+		</Global>
+	</Mappings>
+</ControlSurface>

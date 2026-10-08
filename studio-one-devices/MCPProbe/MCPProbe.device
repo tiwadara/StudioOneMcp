@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe: answers requests left in a mailbox folder by calling
+     Host.GUI.Commands from script. Its one job is to settle issue #3: does a
+     macro fire when called from script rather than mapped in surface XML?
+     Pattern from NeanderthalMan/studio-one-mcp (MIT). -->
+<DeviceDefinition
+	vendor="StudioOneMCP"
+	name="StudioOneMCP Probe"
+	classID="{6E1B7A30-2C4D-4F8E-9A51-3D7C0B9E4F12}"
+	category="Surface"
+	nativeCode="JSControlSurfaceDevice"
+	deviceScriptFile="ProbeDevice.js"
+	deviceScriptFile.functionName="createProbeDevice"
+	surfaceFile="MCPProbe.surface.xml"
+	componentScriptFile="ProbeComponent.js"
+	componentScriptFile.functionName="createProbeComponent"
+/>
