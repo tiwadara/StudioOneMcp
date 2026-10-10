@@ -1,0 +1,72 @@
+# Agentic Factory: copy to .github/workflows/factory.yml in any repo.
+# Docs: https://github.com/tiwadara/agentic-factory
+name: Agentic Factory
+# The reconciler matches runs to issues/PRs by "#<number>" in the run name; keep this format.
+run-name: "🏭 ${{ github.event_name }} #${{ github.event.issue.number || github.event.pull_request.number || github.event.workflow_run.pull_requests[0].number || inputs.number || github.event.workflow_run.head_branch || github.event_name }}"
+
+on:
+  issues:
+    types: [opened, reopened, labeled]
+  issue_comment:
+    types: [created]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+  workflow_run:
+    workflows: [CI]            # ← name(s) of your CI workflow(s), so failures trigger the fix stage
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Stage to run
+        type: choice
+        options: [triage, implement, review, fix]
+      number:
+        description: Issue (triage/implement) or PR (review/fix) number
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  actions: write
+  id-token: write
+
+jobs:
+  factory:
+    # Cheap pre-filter so unrelated events don't spin up the router.
+    if: >-
+      (github.event_name != 'issues' || github.event.action != 'labeled' || github.event.label.name == 'factory:ready') &&
+      (github.event_name != 'issue_comment' || !github.event.issue.pull_request) &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure')
+    uses: tiwadara/agentic-factory/.github/workflows/factory.yml@v1
+    secrets: inherit
+    with:
+      app-id: ${{ vars.FACTORY_APP_ID }}
+      auto-approve: ${{ vars.FACTORY_AUTO_APPROVE == 'true' }}   # approve PRs that pass every auto-approval rule
+      paused: ${{ vars.FACTORY_PAUSED == 'true' }}   # cordon: set repo variable FACTORY_PAUSED=true
+      # Toolchain for the agent:
+      python-version: "3.12"
+      setup: pip install -e ".[dev]"
+      verify: |
+        ruff check src/ tests/
+        mypy src/
+        pytest tests/ -v --tb=short
+      agent-tools: "Bash(python:*),Bash(python3:*),Bash(pip:*),Bash(pytest:*),Bash(ruff:*),Bash(mypy:*)"
+      instructions: |
+        Python MCP server that drives PreSonus Studio One over a virtual MIDI port (MCU and the
+        StudioOneMCP Pads command surface), macOS keyboard/menu automation and generated macros.
+        CI runs on Linux with no Studio One, no MIDI hardware and no macOS: tests must mock
+        rtmidi, CoreMIDI, subprocess/osascript and the filesystem, never open real ports.
+        - Code must work on Python 3.10-3.12 and pass `mypy --strict` (configured in pyproject.toml).
+        - Keep MCP tool names and input schemas backward compatible unless the issue asks otherwise.
+        - Do not change MIDI CC/note assignments in docs/midi-map.json, keymap.json or
+          studio-one-devices/ unless the issue asks for it; the surface XML and the map must agree.
+        - Keystroke/menu automation runs real input on the user's machine: keep it limited to
+          Studio One and never broaden what it can type or click.
+      require-human-paths: '(^|/)(package\.json|package-lock\.json|yarn\.lock|pnpm-lock\.yaml|requirements[^/]*\.txt|pyproject\.toml|poetry\.lock|go\.(mod|sum)|Cargo\.(toml|lock)|Gemfile(\.lock)?|[^/]*\.gradle(\.kts)?|gradle/|libs\.versions\.toml|Dockerfile|docker-compose[^/]*|[^/]*\.tf|netlify\.toml|vercel\.json|AndroidManifest\.xml|Info\.plist)$|(^|/)(migrations?|auth|security|infra|deploy)/|^studio-one-devices/|^src/studio_one_mcp/(keystrokes|coremidi|server)\.py$'
+      # auto-ready-sizes: xs,s,m
+      # max-fix-attempts: 3
+      # max-cost-usd: 5
+      # merge-method: squash
