@@ -1,0 +1,27 @@
+name: Factory task
+description: A change for the agentic factory to build automatically
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The factory triages this issue, asks questions if anything is unclear, then builds it,
+        opens a PR and merges it once CI passes and it is approved. Small, specific issues work best.
+  - type: textarea
+    id: what
+    attributes:
+      label: What should change?
+      description: Current behaviour and desired behaviour. Screenshots welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How will we know it's done? One per line.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Relevant files, constraints, or anything the factory must not change.
